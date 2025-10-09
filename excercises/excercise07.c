@@ -10,10 +10,10 @@ int main(void) {
 }
 
 void print_array(int *ptr, int len) {
-  int i;
-  for (i = 0; i < len - 1; i++) {
-    printf("%d, ", *(ptr + i));
+  len--;
+  while (len--) {
+    printf("%d, ", *ptr++);
   }
 
-  printf("%d\n", *(ptr + i));
+  printf("%d\n", *(ptr));
 }
