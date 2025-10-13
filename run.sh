@@ -15,16 +15,16 @@ if [ ".${filename##*.}" != ".c" ]; then
   exit 1
 fi
 
-filename=${filename%".c"*} #remove .c extension
+output="${filename%".c"*}.out" #change .c to .out
 
 #Compile c program using gcc
-echo -e "${GREEN}Compilling ${filename}.c ...${NC}"
-gcc -Wall -pedantic "${filename}.c" -o "${filename}.out"
+echo -e "${GREEN}Compilling ${filename} ...${NC}"
+gcc -Wall -pedantic $filename -o $output
 
 #if compilation was succesful then run output file, else show errors
 if [ $? -eq 0 ]; then
-  echo -e "${GREEN}Running ${filename}.out ...${NC}"
-  ./"${filename}.out"
+  echo -e "${GREEN}Running ${output} ...${NC}"
+  ./"${output}"
 
   if [ $? -eq 0 ]; then
     echo -e "${GREEN}Ran succesfuly${NC}"
