@@ -22,10 +22,10 @@ int main(void) {
     getPosition(prev_xy, "\nSelect piece: ", 0);
     getPosition(new_xy, "Choose position: ", 1);
 
-    char piece = board[prev_xy[1]][prev_xy[0]];
+    board[new_xy[1]][new_xy[0]] = board[prev_xy[1]][prev_xy[0]];
     board[prev_xy[1]][prev_xy[0]] = ' ';
-    board[new_xy[1]][new_xy[0]] = piece;
 
+    printf("\n");
     printBoard();
   }
 }
@@ -77,16 +77,12 @@ void getPosition(int *xy, char *message, int checkEmpty) {
 }
 
 void printBoard() {
-  int i = 0;
-  while (i < 8) {
-    int j = 0;
+  for (int i = 0; i < 8; i++) {
     printf("%d ", 8 - i);
-    while (j < 8) {
+    for (int j = 0; j < 8; j++) {
       printf("%c", board[i][j]);
-      j++;
     }
     printf("\n");
-    i++;
   }
   printf("  ABCDEFGH\n");
 }
