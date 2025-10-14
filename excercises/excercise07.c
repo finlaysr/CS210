@@ -1,11 +1,19 @@
 #include <stdio.h>
 void print_array(int *ptr, int len);
+void print_2d_array(char *ptr, int ylen, int xlen);
 
 int main(void) {
-  int completely_random_nums[14] = {99, 97,  114, 97,  109, 101, 108,
-                                    32, 119, 97,  102, 101, 114, 0};
+  int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  print_array(arr, 10);
 
-  print_array(completely_random_nums, 14);
+  char arr2[4][5] = {
+      {'A', 'B', 'C', 'D', 'E'},
+      {'F', 'G', 'H', 'I', 'J'},
+      {'K', 'L', 'M', 'N', 'O'},
+      {'P', 'Q', 'R', 'S', 'T'},
+  };
+  print_2d_array(*arr2, 4, 5);
+
   return 0;
 }
 
@@ -16,4 +24,14 @@ void print_array(int *ptr, int len) {
   }
 
   printf("%d\n", *(ptr));
+}
+
+void print_2d_array(char *ptr, int ylen, int xlen) {
+  while (ylen--) {
+    int x = xlen - 1;
+    while (x--) {
+      printf("%c, ", *ptr++);
+    }
+    printf("%c\n", *(ptr++));
+  }
 }
