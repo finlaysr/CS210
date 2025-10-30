@@ -27,7 +27,7 @@ if [ $? -eq 0 ]; then
   ./"${output}"
 
   if [ $? -eq 0 ]; then
-    echo -e "${GREEN}Ran succesfuly${NC}"
+    echo -e "${GREEN}Finished Running${NC}"
   else
     echo -e "${RED}Running not succesful :(${NC}"
   fi
