@@ -3,7 +3,7 @@
 int length(char *str);
 
 char *str_rev_and_copy(char *src, char *dest);
-char *rev_char(char *src);
+char *str_rev(char *src);
 char str_cmp(char *str1, char *str2);
 char *str_trim(char *src);
 
@@ -22,25 +22,25 @@ int main(void) {
   {
     char s[] = "abcde fghi";
 
-    char *returned = rev_char(s);
+    char *returned = str_rev(s);
     printf("Reversed in place: %s\n", s);
     printf("Returned:          %s\n", returned);
   }
 
   // Q3
   {
-    int order = str_cmp("aaaa", "aaab");
+    int order = str_cmp("aaab", "aaaa");
     printf("Order: %d\n", order);
   }
 
   // Q4
   {
     char orig[] = "     \t\t\n Hello, World!\n\n\tGoodbye, World ! \t\n";
-    printf("Original (%ld): {%s}\n", orig, orig);
+    printf("Original: {%s}\n", orig);
 
     char *returned = str_trim(orig);
-    printf("Trimed (%ld): {%s}\n", orig, orig);
-    printf("Returned (%ld): {%s}\n", returned, returned);
+    printf("Trimed: {%s}\n", orig);
+    printf("Returned: {%s}\n", returned);
   }
 }
 
@@ -62,7 +62,7 @@ char *str_rev_and_copy(char *src, char *dest) {
   return dest;
 }
 
-char *rev_char(char *str) {
+char *str_rev(char *str) {
   char buffer;
   int len = length(str);
   for (int i = 0; i < len / 2; i++) {
@@ -74,29 +74,34 @@ char *rev_char(char *str) {
 }
 
 char str_cmp(char *str1, char *str2) {
-  int order = 0;
-  int len = length(str1);
-  int i = 0;
-  while (order == 0 && i < len) {
-    if (*(str1 + i) > *(str2 + i)) {
-      order = 1;
-    } else if (*(str1 + i) < *(str2 + i)) {
-      order = -1;
-    }
-    i++;
+  if (*str1 == 0 || *str1 == 0) {
+    return 0;
+  } else if (*str1 > *str2) {
+    return 1;
+  } else if (*str1 < *str2) {
+    return -1;
   }
-  return order;
+  return str_cmp(str1 + 1, str2 + 1);
 }
 
 char *str_trim(char *src) {
-  char rem[] = {' ', '\n', '\t'};
-
   int len = length(src);
-  int i = 0;
 
-  while (i < len && ((*(src + i) == ' ') || (*(src + i) == '\n') ||
-                     (*(src + i) == '\t'))) {
-    src++;
+  // Remove trailing stuff
+  int i = len - 1;
+  while (i > 0 && ((*(src + i) == ' ') || (*(src + i) == '\n') ||
+                   (*(src + i) == '\t'))) {
+    i--;
+  }
+  *(src + i + 1) = 0;
+  len = i + 2;
+
+  // Remove leading stuff
+  while ((*(src) == ' ') || (*(src) == '\n') || (*(src) == '\t')) {
+    len--;
+    for (int j = 0; j < len; j++) {
+      *(src + j) = *(src + j + 1);
+    }
   }
 
   return src;
