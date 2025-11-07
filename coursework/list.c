@@ -17,3 +17,12 @@ void delete_node(Node *node) {
   free(node);
   node = NULL;
 }
+
+void push(Node *node, char *value) {
+  Node *curr = node;
+  while (curr->next != NULL) {
+    curr = curr->next;
+  }
+
+  curr->next = new_node(value);
+}

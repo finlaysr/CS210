@@ -32,5 +32,21 @@ run3: build3
 	@echo -e "$(GREEN)Running $(output3) ...${NC}"
 	./$(output3)
 
+# Make for part 4
+files4 := main04.c list.c
+output4 := main04.out
+
+build4: $(files4)
+	@echo -e "$(GREEN)Compilling [$(files4)] ...${NC}"
+	gcc $(files4) $(arguments) $(dev_args) -o $(output4)
+
+run4: build4
+	@echo -e "$(GREEN)Running $(output4) ...${NC}"
+	./$(output4)
+
+
+
+
+
 clean: $(wildcard *.out)
 	rm -rf $?
