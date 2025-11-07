@@ -7,16 +7,30 @@ NC := \033[0m # No Color
 arguments := -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wpointer-arith -Wstrict-overflow=2 -Wformat=2 -Wundef -Wcast-align -Wswitch-enum -Wuninitialized -Wfloat-equal -fstack-protector-strong -D_FORTIFY_SOURCE=2 -O2 -g
 dev_args := -g -fsanitize=address,undefined,leak
 
-files := main02.c list.c
-output := main02.out
 
-build: $(files)
+# Make for part 2
+files2 := main02.c list.c
+output2 := main02.out
+
+build2: $(files2)
 	@echo -e "$(GREEN)Compilling [$(files)] ...${NC}"
-	gcc $(files) $(arguments) $(dev_args) -o $(output)
+	gcc $(files2) $(arguments) $(dev_args) -o $(output2)
 
-run: build
-	@echo -e "$(GREEN)Running $(output) ...${NC}"
-	./$(output)
+run2: build2
+	@echo -e "$(GREEN)Running $(output2) ...${NC}"
+	./$(output2)
 
-clean:
-	rm -rf $(output)
+# Make for part 3
+files3 := main03.c list.c
+output3 := main03.out
+
+build3: $(files3)
+	@echo -e "$(GREEN)Compilling [$(files3)] ...${NC}"
+	gcc $(files3) $(arguments) $(dev_args) -o $(output3)
+
+run3: build3
+	@echo -e "$(GREEN)Running $(output3) ...${NC}"
+	./$(output3)
+
+clean: $(wildcard *.out)
+	rm -rf $?
