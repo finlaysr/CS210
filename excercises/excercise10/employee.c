@@ -14,7 +14,7 @@ void enter_details(Employee *employee) {
 }
 
 Employee *get_highest_paid(Employee *employees, int n) {
-  int largest = -1;
+  float largest = -1;
   int pos;
   for (int i = 0; i < n; i++) {
     if (employees[i].salary > largest) {
