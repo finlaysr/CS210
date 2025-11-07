@@ -8,3 +8,5 @@ typedef struct NODE {
 Node *new_node(char *value);
 
 void delete_node(Node *node);
+
+void push(Node *node, char *value);
