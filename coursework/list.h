@@ -14,3 +14,5 @@ void delete_node(Node *node);
 void push(List node, char *value);
 
 Node **new_list();
+
+char *pop(List node);
