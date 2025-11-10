@@ -18,11 +18,22 @@ void delete_node(Node *node) {
   node = NULL;
 }
 
-void push(Node *node, char *value) {
-  Node *curr = node;
-  while (curr->next != NULL) {
-    curr = curr->next;
-  }
+void push(List node, char *value) {
+  List curr = node;
+  if ((*curr) == NULL) {
+    *curr = new_node(value);
 
-  curr->next = new_node(value);
+  } else {
+    while ((*curr)->next != NULL) {
+      curr = &(*curr)->next;
+    }
+    (*curr)->next = new_node(value);
+  }
+}
+
+// List strucure
+List new_list() {
+  List list = malloc(sizeof(Node **));
+  *list = NULL;
+  return list;
 }

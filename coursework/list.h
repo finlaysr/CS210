@@ -4,9 +4,13 @@ typedef struct NODE {
   struct NODE *next;
 } Node;
 
+typedef Node **List;
+
 // Create new node with string value
 Node *new_node(char *value);
 
 void delete_node(Node *node);
 
-void push(Node *node, char *value);
+void push(List node, char *value);
+
+Node **new_list();

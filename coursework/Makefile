@@ -4,7 +4,7 @@ GREEN := \033[0;32m
 NC := \033[0m # No Color
 
 # A bunch of arguments to enforce code safety and best practices
-arguments := -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wpointer-arith -Wstrict-overflow=2 -Wformat=2 -Wundef -Wcast-align -Wswitch-enum -Wuninitialized -Wfloat-equal -fstack-protector-strong -D_FORTIFY_SOURCE=2 -O2 -g
+arguments := -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wpointer-arith -Wstrict-overflow=2 -Wformat=2 -Wundef -Wcast-align -Wswitch-enum -Wuninitialized -Wfloat-equal -fstack-protector-strong -D_FORTIFY_SOURCE=2 -O2
 dev_args := -g -fsanitize=address,undefined,leak
 
 
@@ -44,6 +44,17 @@ run4: build4
 	@echo -e "$(GREEN)Running $(output4) ...${NC}"
 	./$(output4)
 
+# Make for part 5
+files5 := main05.c list.c
+output5 := main05.out
+
+build5: $(files5)
+	@echo -e "$(GREEN)Compilling [$(files5)] ...${NC}"
+	gcc $(files5) $(arguments) $(dev_args) -o $(output5)
+
+run5: build5
+	@echo -e "$(GREEN)Running $(output5) ...${NC}"
+	./$(output5)
 
 
 
