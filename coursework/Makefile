@@ -56,7 +56,17 @@ run5: build5
 	@echo -e "$(GREEN)Running $(output5) ...${NC}"
 	./$(output5)
 
+# Make for part 6
+files6 := main06.c list.c
+output6 := main06.out
 
+build6: $(files6)
+	@echo -e "$(GREEN)Compilling [$(files6)] ...${NC}"
+	gcc $(files6) $(arguments) $(dev_args) -o $(output6)
+
+run6: build6
+	@echo -e "$(GREEN)Running $(output6) ...${NC}"
+	./$(output6)
 
 
 clean: $(wildcard *.out)
